@@ -117,8 +117,7 @@ Faça toda a construção e teste na máquina virtual. Você pode escrever seu c
 O código base está no diretório `trabalho1/cliente_servidor/`. *Você deve ler e compreender este código antes de começar a programar.*
 
 Você deve programar apenas nas localizações dos arquivos fornecidos marcados com comentários `TODO`. Existe uma seção `TODO` para cliente e uma para servidor. Você pode adicionar funções se desejar, mas não altere os nomes dos arquivos, pois eles serão usados para testes automatizados.
-
-A documentação para a programação de sockets em Go está localizada aqui: https://golang.org/pkg/net/. A visão geral na parte superior e a seção sobre [Tipo de conexão] (https://golang.org/pkg/net/#Conn) serão as mais relevantes.
+A documentação para a programação de sockets em Go está localizada aqui: https://golang.org/pkg/net/. A visão geral na parte superior e a seção sobre [Tipo de conexão](https://golang.org/pkg/net/#Conn) serão as mais relevantes.
 
 Os arquivos `cliente.go` e `servidor.go` contêm o código básico. Você precisará adicionar o código de programação de sockets nos locais marcados como `TODO`. As soluções de referência têm aproximadamente 40 (bem comentadas e espaçadas) linhas de código nas seções `TODO` de cada arquivo. Suas implementações podem ser mais curtas ou mais longas.
 
