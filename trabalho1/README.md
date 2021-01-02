@@ -35,7 +35,7 @@ VirtualBox é um provedor de máquinas virtuais (hipervisor).
 **Linux:** Vai depender da sua distribuição. No ubuntu execute o comando: sudo apt install virtualbox.
 Execute o virtualbox por um terminal de comandos e veja se mensagens de erro ou warning estão aparecendo. Se houver, reiniciar o terminal ou a máquina talvez seja suficiente para que elas deixem de aparecer. Só assim o vagrant funcionará corretamente.
 
-**Nota:** Nota: Isso também instalará o aplicativo VirtualBox em seu computador, mas você nunca deve precisar executá-lo, embora possa ser útil (consulte o passo 6).
+**Observação:** Isso também instalará o aplicativo VirtualBox em seu computador, mas você nunca deve precisar executá-lo, embora possa ser útil (consulte o passo 6).
 
 ### Passo 3: instale o Git (e o terminal compatível com SSH no Windows)
 
@@ -68,5 +68,22 @@ Abra seu terminal (use aquele mencionado no passo 3 se estiver usando Windows) e
 
 Execute `git clone https://github.com/filipemr/rus0082` para baixar os arquivos do curso no GitHub.
 
-`cd rus0082/trabalhos` para entrar no diretório de trabalhos do curso.
+`cd rus0082` para entrar no diretório de trabalhos do curso.
+
+### Passo 6: Provisionando a máquina virtual usando vagrant
+
+No diretório `rus0082` que você acabou de criar, execute o comando `vagrant up` para iniciar a máquina virtual e provisioná-la de acordo com o Vagrantfile. Você provavelmente terá que esperar alguns minutos. Você pode ver avisos/erros em vermelho, como "default: stdin: is not a tty", mas você não deve se preocupar com eles.
+
+** Observação 1 **: os comandos a seguir permitirão que você interrompa a VM a qualquer momento (por exemplo, quando terminar de trabalhar em uma tarefa do dia):
+* `vagrant suspend` salvará o estado da VM e a parará.
+* `vagrant halt` irá desligar normalmente o sistema operacional da VM e desligar a VM.
+* `vagrant destroy` irá remover todos os vestígios da VM no seu sistema.
+
+Além disso, o comando `vagrant status` permitirá que você verifique o status de sua máquina caso não tenha certeza (por exemplo, executando, desligado, salvo ...). Você deve estar em algum subdiretório do diretório que contém o Vagrantfile para usar qualquer um dos comandos acima, caso contrário, o Vagrant não saberá a qual máquina virtual você está se referindo.
+
+** Observação 2 **: O aplicativo VirtualBox que foi instalado no passo 2 fornece uma interface visual como alternativa a esses comandos, onde você pode ver o status de sua VM e ligá-la/desligá-la ou salvar seu estado. Não é recomendado usá-lo, entretanto, uma vez que não é integrado ao Vagrant, e os comandos de digitação não devem ser mais lentos. Também não é uma alternativa ao `vagrant up` inicial, já que isso cria a máquina virtual.
+### Observação extra para usuários Windows
+
+Os finais de linha são simbolizados de maneira diferente no DOS (Windows) e no Unix
+(Linux/MacOS). No primeiro, eles são representados por um retorno ao início e pulo de linha (CRLF, ou "\r\n"), e no último, apenas um avanço de linha (LF, ou "\n"). Dado que você executou `git pull` no Windows, git detecta seu sistema operacional e adiciona retorno ao início aos arquivos durante o download. Isso pode levar a problemas de análise dentro da máquina virtual, que executa o Ubuntu (Unix). Felizmente, isso parece afetar apenas os scripts de shell (arquivos \*.sh) que foram escritos para teste. O `Vagrantfile` é configurado para converter automaticamente todos os arquivos de volta para o formato Unix, então ** você não deve se preocupar com isso **. ** No entanto **, se você quiser escrever/editar scripts de shell para ajudar com os testes, ou se encontrar esse problema com algum outro tipo de arquivo, use o programa pré-instalado `dos2unix`. Execute `dos2unix [arquivo]` para convertê-lo para o formato Unix (antes de editarexecutar na máquina virtual) e execute `unix2dos [arquivo]` para convertê-lo para o formato DOS (antes de editar no Windows). Uma boa dica de que você precisa fazer isso ao executar a partir da máquina virtual é alguma mensagem de erro envolvendo `^M` (retorno ao início). Uma boa dica que você precisa fazer ao editar no Windows é a falta de novas linhas. Lembre-se de que fazer isso só deve ser necessário se quiser editar scripts de shell.
 
