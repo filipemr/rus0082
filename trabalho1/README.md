@@ -74,14 +74,14 @@ Execute `git clone https://github.com/filipemr/rus0082` para baixar os arquivos 
 
 No diretório `rus0082` que você acabou de criar, execute o comando `vagrant up` para iniciar a máquina virtual e provisioná-la de acordo com o Vagrantfile. Você provavelmente terá que esperar alguns minutos. Você pode ver avisos/erros em vermelho, como "default: stdin: is not a tty", mas você não deve se preocupar com eles.
 
-** Observação 1 **: os comandos a seguir permitirão que você interrompa a VM a qualquer momento (por exemplo, quando terminar de trabalhar em uma tarefa do dia):
+**Observação 1**: os comandos a seguir permitirão que você interrompa a VM a qualquer momento (por exemplo, quando terminar de trabalhar em uma tarefa do dia):
 * `vagrant suspend` salvará o estado da VM e a parará.
 * `vagrant halt` irá desligar normalmente o sistema operacional da VM e desligar a VM.
 * `vagrant destroy` irá remover todos os vestígios da VM no seu sistema.
 
 Além disso, o comando `vagrant status` permitirá que você verifique o status de sua máquina caso não tenha certeza (por exemplo, executando, desligado, salvo ...). Você deve estar em algum subdiretório do diretório que contém o Vagrantfile para usar qualquer um dos comandos acima, caso contrário, o Vagrant não saberá a qual máquina virtual você está se referindo.
 
-** Observação 2 **: O aplicativo VirtualBox que foi instalado no passo 2 fornece uma interface visual como alternativa a esses comandos, onde você pode ver o status de sua VM e ligá-la/desligá-la ou salvar seu estado. Não é recomendado usá-lo, entretanto, uma vez que não é integrado ao Vagrant, e os comandos de digitação não devem ser mais lentos. Também não é uma alternativa ao `vagrant up` inicial, já que isso cria a máquina virtual.
+**Observação 2**: O aplicativo VirtualBox que foi instalado no passo 2 fornece uma interface visual como alternativa a esses comandos, onde você pode ver o status de sua VM e ligá-la/desligá-la ou salvar seu estado. Não é recomendado usá-lo, entretanto, uma vez que não é integrado ao Vagrant, e os comandos de digitação não devem ser mais lentos. Também não é uma alternativa ao `vagrant up` inicial, já que isso cria a máquina virtual.
 ### Observação extra para usuários Windows
 
 Os finais de linha são simbolizados de maneira diferente no DOS (Windows) e no Unix
