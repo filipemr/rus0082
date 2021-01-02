@@ -87,3 +87,27 @@ Além disso, o comando `vagrant status` permitirá que você verifique o status 
 Os finais de linha são simbolizados de maneira diferente no DOS (Windows) e no Unix
 (Linux/MacOS). No primeiro, eles são representados por um retorno ao início e pulo de linha (CRLF, ou "\r\n"), e no último, apenas um avanço de linha (LF, ou "\n"). Dado que você executou `git pull` no Windows, git detecta seu sistema operacional e adiciona retorno ao início aos arquivos durante o download. Isso pode levar a problemas de análise dentro da máquina virtual, que executa o Ubuntu (Unix). Felizmente, isso parece afetar apenas os scripts de shell (arquivos \*.sh) que foram escritos para teste. O `Vagrantfile` é configurado para converter automaticamente todos os arquivos de volta para o formato Unix, então **você não deve se preocupar com isso**. **No entanto**, se você quiser escrever/editar scripts de shell para ajudar com os testes, ou se encontrar esse problema com algum outro tipo de arquivo, use o programa pré-instalado `dos2unix`. Execute `dos2unix [arquivo]` para convertê-lo para o formato Unix (antes de editarexecutar na máquina virtual) e execute `unix2dos [arquivo]` para convertê-lo para o formato DOS (antes de editar no Windows). Uma boa dica de que você precisa fazer isso ao executar a partir da máquina virtual é alguma mensagem de erro envolvendo `^M` (retorno ao início). Uma boa dica que você precisa fazer ao editar no Windows é a falta de novas linhas. Lembre-se de que fazer isso só deve ser necessário se quiser editar scripts de shell.
 
+## Parte B: Programação Socket
+
+Conforme discutido na aula, a programação de sockets é a maneira padrão de escrever programas que se comunicam em uma rede. Embora originalmente desenvolvido para computadores Unix programados em C, a abstração de socket é geral e não está vinculada a nenhum sistema operacional ou linguagem de programação específica. Isso permite que os programadores usem o socket para escrever programas de rede corretos em muitos contextos.
+
+Esta parte do trabalho lhe dará experiência com a programação básica de sockets. Você escreverá um par de programas cliente e servidor TCP para enviar e receber mensagens de texto pela Internet.
+
+Os programas cliente e servidor devem atender às seguintes especificações. Certifique-se de lê-los meticulosamente antes e depois da programação para garantir que sua implementação os cumpra:
+
+### Especificação servidor 
+* Cada programa servidor deve escutar em um socket, esperar que um cliente se conecte, receber uma mensagem do cliente, imprimir a mensagem na saída padrão e então esperar pelo próximo cliente indefinidamente.
+* Cada servidor deve ter um argumento de linha de comando: o número da porta para escutar as conexões do cliente.
+* Cada servidor deve aceitar e processar as comunicações do cliente em um loop infinito, permitindo que vários clientes enviem mensagens para o mesmo servidor. O servidor só deve sair em resposta a um sinal externo (por exemplo, SIGINT ao pressionar `ctrl-c`).
+* Cada servidor deve manter uma fila de cliente curta (5-10) e lidar com várias tentativas de conexão de cliente sequencialmente. O servidor TCP deve criar uma nova thread para lidar com cada conexão dos clientes simultaneamente.
+* Cada servidor deve lidar normalmente com os valores de erro potencialmente retornados pelas funções da biblioteca de programação de socket (consulte as especificações da linguagem GO). Erros relacionados ao tratamento de conexões de clientes não devem fazer com que o servidor saia após tratar o erro; todos os outros deveriam.
+
+### Especificação cliente
+* Cada programa cliente deve entrar em contato com um servidor, ler uma mensagem do console/terminal, enviar a mensagem e sair.
+* Cada cliente deve ler e enviar a mensagem *exatamente* como ela aparece no console/terminal até chegar a um EOF (fim de arquivo).
+* Cada cliente deve ter dois argumentos de linha de comando: o endereço IP do servidor e o número da porta do servidor.
+* Cada cliente deve ser capaz de lidar com mensagens arbitrariamente grandes lendo e enviando trechos da mensagem de forma iterativa, em vez de ler a mensagem inteira na memória primeiro.
+* Cada cliente deve lidar com envios parciais (quando um socket transmite apenas parte dos dados fornecidos na última chamada `send`) tentando reenviar o resto dos dados até que todos tenham sido enviados.
+* Cada cliente deve lidar com os valores de erro potencialmente retornados pelas funções da biblioteca de programação de socket.
+
+
