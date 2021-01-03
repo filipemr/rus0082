@@ -4,8 +4,6 @@
 
 Você deve programar o trabalho em Golang.
 
-A máquina virtual é opcional. Você pode ter o ambiente configurado em sua própria máquina.
-
 A trabalho pode ser realizado individualmente ou em dupla.
 
 A cópia do trabalho não deveria ser uma prática. A discussão é saudável.
@@ -99,7 +97,7 @@ Os programas cliente e servidor devem atender às seguintes especificações. Ce
 * Cada programa servidor deve escutar em um socket, esperar que um cliente se conecte, receber uma mensagem do cliente, imprimir a mensagem na saída padrão e então esperar pelo próximo cliente indefinidamente.
 * Cada servidor deve ter um argumento de linha de comando: o número da porta para escutar as conexões do cliente.
 * Cada servidor deve aceitar e processar as comunicações do cliente em um loop infinito, permitindo que vários clientes enviem mensagens para o mesmo servidor. O servidor só deve sair em resposta a um sinal externo (por exemplo, SIGINT ao pressionar `ctrl-c`).
-* Cada servidor deve manter uma fila de cliente curta (5-10) e lidar com várias tentativas de conexão de cliente sequencialmente. O servidor TCP deve criar uma nova thread para lidar com cada conexão dos clientes simultaneamente.
+* Cada servidor deve manter uma fila de cliente curta (5-10) e lidar com várias tentativas de conexão de cliente sequencialmente. Em aplicativos reais, um servidor TCP criaria um novo processo/thread para lidar com cada conexão de cliente simultaneamente, mas isso não é necessário para este trabalho.
 * Cada servidor deve lidar normalmente com os valores de erro potencialmente retornados pelas funções da biblioteca de programação de socket (consulte as especificações da linguagem GO). Erros relacionados ao tratamento de conexões de clientes não devem fazer com que o servidor saia após tratar o erro; todos os outros deveriam.
 
 ### Especificação cliente
@@ -123,17 +121,17 @@ Os arquivos `cliente.go` e `servidor.go` contêm o código básico. Você precis
 
 A função Go `Listen` mantém uma fila de clientes conectados por padrão. Nenhuma programação adicional é necessária.
 
-Você deve construir sua solução executando `make go` no diretório `trabalho1/cliente_servidor`. Seu código *deve* ser construído usando o Makefile fornecido. O servidor deve ser executado como `./servidor [porta] > [arquivo de saída]`. O cliente deve ser executado como `./cliente [IP do servidor] [porta do servidor] < [arquivo de mensagem]`. Consulte "Teste" para obter mais detalhes.
+Você deve construir sua solução executando `make all` no diretório `trabalho1/cliente_servidor`. Seu código *deve* ser construído usando o Makefile fornecido. O servidor deve ser executado como `./servidor [porta] > [arquivo de saída]`. O cliente deve ser executado como `./cliente [IP do servidor] [porta do servidor] < [arquivo de mensagem]`. Consulte "Teste" para obter mais detalhes.
 
 ### Teste
 
-Você deve testar suas implementações, tentando enviar mensagens de seus clientes para seus servidores. O servidor pode ser executado em segundo plano (acrescente um `&` ao comando) ou em uma janela SSH separada. Você deve usar `127.0.0.1` como o IP do servidor e um número de porta de servidor alto entre 10000 e 60000. Você pode matar um servidor de segundo plano com o comando`fg` para trazê-lo para o primeiro plano e depois `ctrl-c`.
+Você deve testar suas implementações tentando enviar mensagens de seus clientes para seus servidores. O servidor pode ser executado em segundo plano (acrescente um `&` ao comando) ou em uma janela SSH separada. Você deve usar `127.0.0.1` como o IP do servidor e um número de porta de servidor alto entre 10000 e 60000. Você pode matar um servidor de segundo plano com o comando`fg` para trazê-lo para o primeiro plano e depois `ctrl-c`.
 
 O script Bash `testa_cliente_servidor.sh` testará sua implementação tentando enviar várias mensagens diferentes entre o cliente e o servidor. As mensagens são as seguintes:
 
 0. A mensagem curta "Vai, Filhão!\n".
-0. Uma longa mensagem alfanumérica gerada aleatoriamente.
-0. Uma longa mensagem binária gerada aleatoriamente.
+0. Uma mensagem alfanumérica longa gerada aleatoriamente.
+0. Uma mensagem binária longa gerada aleatoriamente.
 0. Várias mensagens curtas enviadas sequencialmente de clientes separados para um servidor.
 0. Várias mensagens alfanuméricas longas e aleatórias enviadas simultaneamente de clientes separados para um servidor.
 
@@ -174,4 +172,10 @@ Aqui estão algumas dicas de debug. Se você ainda estiver tendo problemas, faç
 * **Devo usar sockets de fluxo (TCP) ou datagrama (UDP)?** Por favor, use sockets de fluxo, para garantir que a mensagem exata seja entregue. Os pacotes de datagrama não têm garantia de entrega.
 * **O cliente deve esperar para receber uma resposta do servidor?** Não, neste trabalho ele deve sair imediatamente após o envio de todos os dados.
 
+### Submissão
 
+Você deve remover os executáveis gerados em `trabalho1/cliente_servidor` executando o comando `make clean`.
+
+Não esqueça de preencher seu nome e matrícula no cabeçalho dos códigos fontes.
+
+Comprima sua pasta rus0082, só será aceito arquivo comprimido no formato zip, e submeta no sigaa.

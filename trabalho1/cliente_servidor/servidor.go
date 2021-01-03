@@ -7,12 +7,8 @@
 package main
 
 import (
-  "fmt"
-  "io"
   "os"
   "log"
-  "net"
-  "bufio"
 )
 
 const RECV_BUFFER_SIZE = 2048

@@ -7,12 +7,8 @@
 package main
 
 import (
-  "fmt"
-  "io"
   "os"
   "log"
-  "net"
-  "bufio"
 )
 
 const SEND_BUFFER_SIZE = 2048

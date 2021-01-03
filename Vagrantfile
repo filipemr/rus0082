@@ -19,9 +19,18 @@ Vagrant.configure(2) do |config|
      sudo apt-get install -y dos2unix
      printf "Usando dos2unix para converter arquivos ao formato Unix se necessário..."
      find /vagrant -name "*" -type f | xargs dos2unix -q
+     #Instalação make
+     sudo apt install make
+     #Download go
      cd /tmp/
      wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz
-
+     #Extraindo go
+     tar -xvf go1.15.6.linux-amd64.tar.gz
+     sudo mv go /usr/local/
+     #Configurar variável de ambiente para GO
+     echo "export GOROOT=/usr/local/go" >> /home/vagrant/.bashrc
+     echo "export GOPATH=/vagrant/" >> /home/vagrant/.bashrc
+     echo "export PATH=$GOROOT/bin:$PATH" >> /home/vagrant/.bashrc
      #Inicia em /vagrant, que é um link para diretório do trabalho na máquina real
      if ! grep -Fxq "cd /vagrant" /home/vagrant/.bashrc
      then
