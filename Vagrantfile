@@ -31,6 +31,7 @@ Vagrant.configure(2) do |config|
      echo "export GOROOT=/usr/local/go" >> /home/vagrant/.bashrc
      echo "export GOPATH=/vagrant/" >> /home/vagrant/.bashrc
      echo "export PATH=$GOROOT/bin:$PATH" >> /home/vagrant/.bashrc
+     source ~/.profile
      #Inicia em /vagrant, que é um link para diretório do trabalho na máquina real
      if ! grep -Fxq "cd /vagrant" /home/vagrant/.bashrc
      then
