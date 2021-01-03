@@ -28,9 +28,8 @@ Vagrant.configure(2) do |config|
      tar -xvf go1.15.6.linux-amd64.tar.gz
      sudo mv go /usr/local/
      #Configurar variável de ambiente para GO
-     echo "export GOROOT=/usr/local/go" >> /home/vagrant/.bashrc
      echo "export GOPATH=/vagrant/" >> /home/vagrant/.bashrc
-     echo "export PATH=$GOROOT/bin:$PATH" >> /home/vagrant/.bashrc
+     echo "export PATH=/usr/local/go/bin:$PATH" >> /home/vagrant/.bashrc
      source ~/.profile
      #Inicia em /vagrant, que é um link para diretório do trabalho na máquina real
      if ! grep -Fxq "cd /vagrant" /home/vagrant/.bashrc
