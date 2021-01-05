@@ -15,8 +15,8 @@ fi
 
 WORKSPACE=/vagrant/trabalho1/.workspace
 numCorrect=0
-TESTS_PER_IMPL=5 # LEMBRE-SE DE ATUALIZAR SE A QTD DE TESTES MUDAR!
-PORT=$2
+TESTS_PER_IMPL=1 # LEMBRE-SE DE ATUALIZAR SE A QTD DE TESTES MUDAR!
+PORT=$1
 SKIP_MESSAGE="Um ou ambos programas faltando. Pulando. \n\n"
 testNum=1
 
@@ -45,11 +45,11 @@ function compare {
 }
 
 # $1 = cliente, $2 = servidor, $3 = porta, $4 = imprime separador (não se 0, sim caso contrário),
-# $5 = imrpime diff (não se 0, sim caso contrário)
+# $5 = imprime diff (não se 0, sim caso contrário)
 function test {
   $2 $3 > test_output.txt &
   SERVER_PID=$!
-  sleep 0.2
+  sleep 1
   $1 127.0.0.1 $3 < test_message.txt >/dev/null
   EXIT_STATUS=$?
   sleep 0.2
