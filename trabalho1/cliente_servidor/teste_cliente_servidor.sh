@@ -75,7 +75,7 @@ function all-tests {
   ###############################################################################
 
   printf "\n$testNum. TESTA MENSAGEM ALFANUMÉRICA ALEATÓRIA\n"
-  head -c100000 /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' > test_message.txt
+  (head -c100000 /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' ; echo) > test_message.txt
   test "$1" "$2" $3 1 0
   ((testNum++))
 
