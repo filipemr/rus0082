@@ -72,6 +72,8 @@ Execute `git clone https://github.com/filipemr/rus0082` para baixar os arquivos 
 
 No diretório `rus0082` que você acabou de criar, execute o comando `vagrant up` para iniciar a máquina virtual e provisioná-la de acordo com o Vagrantfile. Você provavelmente terá que esperar alguns minutos. Você pode ver avisos/erros em vermelho, como "default: stdin: is not a tty", mas você não deve se preocupar com eles.
 
+Caso, após o comando `vagrant up` não apareça `vagrant@rus0082:/vagrant$` é porque a máquina está ligada mas você não está logado. Para isso, execute `vagrant ssh` e você se logará ao terminal da máquina virtual.
+
 **Observação 1**: os comandos a seguir permitirão que você interrompa a VM a qualquer momento (por exemplo, quando terminar de trabalhar em uma tarefa do dia):
 * `vagrant suspend` salvará o estado da VM e a parará.
 * `vagrant halt` irá desligar normalmente o sistema operacional da VM e desligar a VM.
